@@ -89,43 +89,43 @@ call s:hl("DiffChange", "", s:dark_yellow, "")
 call s:hl("DiffDelete", "", s:dark_red, "")
 call s:hl("DiffText", "", s:dark_blue, "")
 " GitGutter
-call s:hl("GitGutterAdd", s:green, s:bg, "")
-call s:hl("GitGutterDelete", s:red, s:bg, "")
-call s:hl("GitGutterChange", s:yellow, s:bg, "")
-call s:hl("GitGutterChangeDelete", s:red, s:bg, "")
+call s:hl("GitGutterAdd", s:dark_green, s:bg, "")
+call s:hl("GitGutterDelete", s:dark_red, s:bg, "")
+call s:hl("GitGutterChange", s:dark_yellow, s:bg, "")
+call s:hl("GitGutterChangeDelete", s:dark_red, s:bg, "")
 " Fugitive
-call s:hl("diffAdded", s:green, "", "")
-call s:hl("diffRemoved", s:red, "", "")
+call s:hl("diffAdded", s:dark_green, "", "")
+call s:hl("diffRemoved", s:dark_red, "", "")
 " vim-signify
-call s:hl("SignifySignAdd", s:green, s:bg, "")
-call s:hl("SignifySignDelete", s:red, s:bg, "")
-call s:hl("SignifySignChange", s:yellow, s:bg, "")
-call s:hl("SignifySignChangeDelete", s:red, s:bg, "")
+call s:hl("SignifySignAdd", s:dark_green, s:bg, "")
+call s:hl("SignifySignDelete", s:dark_red, s:bg, "")
+call s:hl("SignifySignChange", s:dark_yellow, s:bg, "")
+call s:hl("SignifySignChangeDelete", s:dark_red, s:bg, "")
 
 
 " Syntax
 call s:hl("Comment", s:black, "", "italic")
 
-call s:hl("Constant", s:yellow, "", "")
-call s:hl("String", s:green, "", "")
-call s:hl("Character", s:green, "", "")
+call s:hl("Constant", s:dark_yellow, "", "")
+call s:hl("String", s:dark_green, "", "")
+call s:hl("Character", s:dark_green, "", "")
 
-call s:hl("Identifier", s:cyan, "", "")
+call s:hl("Identifier", s:dark_cyan, "", "")
 
-call s:hl("Statement", s:magenta, "", "")
+call s:hl("Statement", s:dark_magenta, "", "")
 
-call s:hl("PreProc", s:red, "", "")
-call s:hl("Macro", s:red, "", "bold")
-call s:hl("Include", s:blue, "", "")
+call s:hl("PreProc", s:dark_red, "", "")
+call s:hl("Macro", s:dark_red, "", "bold")
+call s:hl("Include", s:dark_blue, "", "")
 
-call s:hl("Type", s:blue, "", "bold")
+call s:hl("Type", s:dark_blue, "", "bold")
 
-call s:hl("Special", s:yellow, "", "bold")
-call s:hl("SpecialComment", s:magenta, "", "italic")
+call s:hl("Special", s:dark_yellow, "", "bold")
+call s:hl("SpecialComment", s:dark_magenta, "", "italic")
 call s:hl("Delimiter", s:fg, "", "")
 call s:hl("Debug", "", "", "inverse")
 call s:hl("Tag", "", "", "inverse")
 
 call s:hl("Underlined", s:link_color, "", "underline")
 call s:hl("Error", s:dark_red, s:bg, "inverse")
-call s:hl("Todo", s:yellow, s:bg, "bold")
+call s:hl("Todo", s:dark_yellow, s:bg, "bold")
