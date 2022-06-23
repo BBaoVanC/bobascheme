@@ -85,10 +85,10 @@ call s:hl("TabLineSel", s:white, s:black, "bold")
 call s:hl("TabLineFill", "", s:dark_black, "")
 
 
-call s:hl("DiffAdd", "", s:dark_green, "")
-call s:hl("DiffChange", "", s:dark_yellow, "")
-call s:hl("DiffDelete", "", s:dark_red, "")
-call s:hl("DiffText", "", s:dark_blue, "")
+call s:hl("DiffAdd", s:white, s:dark_green, "")
+call s:hl("DiffChange", s:white, s:dark_yellow, "")
+call s:hl("DiffDelete", s:white, s:dark_red, "")
+call s:hl("DiffText", s:white, s:dark_blue, "")
 " GitGutter
 call s:hl("GitGutterAdd", s:dark_green, s:bg, "")
 call s:hl("GitGutterDelete", s:dark_red, s:bg, "")
