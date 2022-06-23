@@ -76,6 +76,7 @@ call s:hl("WinSeparator", s:dark_black, s:bg, "")
 
 call s:hl("WarningMsg", s:fg, s:dark_yellow, "")
 call s:hl("ErrorMsg", s:fg, s:dark_red, "")
+call s:hl("Question", s:dark_green, "", "bold")
 
 call s:hl("StatusLine", s:fg, s:dark_black, "bold")
 call s:hl("StatusLineNC", s:black, s:dark_black, "")
@@ -129,3 +130,7 @@ call s:hl("Tag", "", "", "inverse")
 call s:hl("Underlined", s:link_color, "", "underline")
 call s:hl("Error", s:dark_red, s:bg, "inverse")
 call s:hl("Todo", s:dark_yellow, s:bg, "bold")
+
+
+" Misc
+call s:hl("Directory", s:dark_cyan, "", "")
