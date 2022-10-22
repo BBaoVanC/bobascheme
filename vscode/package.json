@@ -1,0 +1,30 @@
+{
+  "name": "bobascheme",
+  "displayName": "bobascheme",
+  "description": "Simple dark color scheme",
+  "version": "0.0.1",
+  "repository": "github:BBaoVanC/bobascheme",
+  "homepage": "https://github.com/BBaoVanC/bobascheme#readme",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "bobascheme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/bobascheme-color-theme.json"
+      }
+    ]
+  },
+  "dependencies": {
+    "vsce": "^2.13.0"
+  },
+  "scripts": {
+    "build": "vsce package"
+  }
+}
