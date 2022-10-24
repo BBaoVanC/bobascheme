@@ -276,7 +276,10 @@
             "scope": [
                 "keyword",
                 "storage.type",
-                "storage.modifier"
+                "storage.modifier",
+                "keyword.other.unit",
+                "keyword.other",
+                "keyword.control"
             ],
             "settings": {
                 "foreground": "#9f4b95"
@@ -285,7 +288,6 @@
         {
             "name": "Operator, Misc",
             "scope": [
-                // "keyword.control", // seems to include stuff like `import` in python
                 "keyword.operator",
                 "constant.other.color",
                 "punctuation",
@@ -354,9 +356,7 @@
                 "support.constant",
                 "constant.character",
                 "constant.escape",
-                "variable.parameter",
-                "keyword.other.unit",
-                "keyword.other"
+                "variable.parameter"
             ],
             "settings": {
                 "foreground": "#8c6110"
@@ -452,7 +452,7 @@
             ],
             "settings": {
                 "fontStyle": "italic",
-                "foreground": "#8c6110"
+                "foreground": "#9f4b95"
             }
         },
         {
