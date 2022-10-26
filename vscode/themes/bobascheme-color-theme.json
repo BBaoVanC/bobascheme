@@ -15,7 +15,7 @@
         "textLink.foreground": "#3a94fb",
         "textLink.activeForeground": "#85adf4",
         "textPreformat.foreground": "#29757f",
-        "textSeparator.foreground": "#00ffff",
+        "textSeparator.foreground": "#00ffff", // TODO: find out what this actually changes
 
         "toolbar.hoverBackground": "#2b2b2b",
         //"toolbar.hoverOutline": "#0000ff",
@@ -115,14 +115,14 @@
         "editorOverviewRuler.errorForeground": "#b04744",
         "editorOverviewRuler.warningForeground": "#8c6110",
         "editorOverviewRuler.infoForeground": "#216dbf",
-        "editorOverviewRuler.bracketMatchForeground": "#ffff00",
+        "editorOverviewRuler.bracketMatchForeground": "#5e5e5e",
         "editorOverviewRuler.currentContentForeground": "#29757f",
         "editorOverviewRuler.incomingContentForeground": "#216dbf",
         "editorOverviewRuler.commonContentForeground": "#5e5e5e",
         "editorOverviewRuler.rangeHighlightForeground": "#414141",
         "editorOverviewRuler.selectionHighlightForeground": "#41414180",
         "editorOverviewRuler.wordHighlightForeground": "#216dbf",
-        "editorOverviewRuler.wordHighlightStrongForeground": "#0000ff",
+        "editorOverviewRuler.wordHighlightStrongForeground": "#0000ff", // TODO: figure out what this does
 
 
         // Editor
