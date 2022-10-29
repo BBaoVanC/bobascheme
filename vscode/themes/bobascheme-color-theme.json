@@ -389,8 +389,7 @@
                 "support.constant",
                 "constant.character",
                 "constant.escape",
-                "constant.character.escape",
-                "variable.parameter"
+                "constant.character.escape"
             ],
             "settings": {
                 "foreground": "#8c6110"
