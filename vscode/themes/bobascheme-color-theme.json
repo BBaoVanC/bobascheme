@@ -238,7 +238,7 @@
                 "punctuation.definition.comment"
             ],
             "settings": {
-                // "fontStyle": "italic",
+                "fontStyle": "italic",
                 "foreground": "#5e5e5e"
             }
         },
@@ -279,7 +279,9 @@
                 "storage.modifier",
                 "keyword.other.unit",
                 "keyword.other",
-                "keyword.control"
+                "keyword.control",
+                "entity.name.type.lifetime",
+                "punctuation.definition.lifetime"
             ],
             "settings": {
                 "foreground": "#9f4b95"
@@ -290,19 +292,28 @@
             "scope": [
                 "keyword.operator",
                 "constant.other.color",
-                "punctuation",
-                "meta.tag",
-                "punctuation.definition.tag",
-                "punctuation.separator.inheritance.php",
-                "punctuation.definition.tag.html",
-                "punctuation.definition.tag.begin.html",
-                "punctuation.definition.tag.end.html",
-                "punctuation.section.embedded",
+                // "punctuation",
+                // "meta.tag",
+                // "punctuation.definition.tag",
+                // "punctuation.separator.inheritance.php",
+                // "punctuation.definition.tag.html",
+                // "punctuation.definition.tag.begin.html",
+                // "punctuation.definition.tag.end.html",
+                // "punctuation.section.embedded",
                 "keyword.other.template",
                 "keyword.other.substitution"
             ],
             "settings": {
-                "foreground": "#d4d4d4"
+                "foreground": "#9f4b95"
+            }
+        },
+        {
+            "name": "Punctuation",
+            "scope": [
+                "punctuation",
+            ],
+            "settings": {
+                "foreground": "#d4d4d4",
             }
         },
         {
@@ -326,6 +337,7 @@
                 "keyword.other.special-method"
             ],
             "settings": {
+                "fontStyle": "",
                 "foreground": "#29757f"
             }
         },
@@ -349,13 +361,35 @@
             }
         },
         {
-            "name": "Number, Constant, Function Argument, Tag Attribute, Embedded",
+            "name": "Macros",
+            "scope": [
+                "entity.name.function.macro"
+            ],
+            "settings": {
+                "foreground": "#b04744",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Attributes",
+            "scope": [
+                "meta.attribute.rust",
+                "meta.attribute.rust punctuation",
+                "meta.attribute.rust keyword.operator"
+            ],
+            "settings": {
+                "foreground": "#b04744",
+            }
+        },
+        {
+            "name": "Number, Constant, Function Argument, Tag Attribute, Embedded, Escape",
             "scope": [
                 "constant.numeric",
                 "constant.language",
                 "support.constant",
                 "constant.character",
                 "constant.escape",
+                "constant.character.escape",
                 "variable.parameter"
             ],
             "settings": {
@@ -392,6 +426,15 @@
             "settings": {
                 "fontStyle": "bold",
                 "foreground": "#216dbf"
+            }
+        },
+        {
+            "name": "Make lifetimes not bold",
+            "scope": [
+                "entity.name.type.lifetime"
+            ],
+            "settings": {
+                "fontStyle": ""
             }
         },
         {
@@ -547,15 +590,6 @@
             "name": "Regular Expressions",
             "scope": [
                 "string.regexp"
-            ],
-            "settings": {
-                "foreground": "#89DDFF"
-            }
-        },
-        {
-            "name": "Escape Characters",
-            "scope": [
-                "constant.character.escape"
             ],
             "settings": {
                 "foreground": "#89DDFF"
@@ -813,7 +847,7 @@
         // Comments
         "comment": {
             "foreground": "#5e5e5e",
-            "fontStyle": ""
+            "fontStyle": "italic"
         },
         "*.documentation": {
             "foreground": "#9f4b95",
