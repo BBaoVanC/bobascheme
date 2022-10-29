@@ -811,32 +811,68 @@
     "semanticHighlighting": true,
     "semanticTokenColors": {
         // Comments
-        "comment": "#5e5e5e",
-        "*.documentation": "#9f4b95",
+        "comment": {
+            "foreground": "#5e5e5e",
+            "fontStyle": ""
+        },
+        "*.documentation": {
+            "foreground": "#9f4b95",
+            "fontStyle": ""
+        },
 
         // Keywords
-        "keyword": "#9f4b95",
+        "keyword": {
+            "foreground": "#9f4b95",
+            "fontStyle": ""
+        },
 
         // Constants
-        "number": "#8c6110",
-        "boolean": "#8c6110",
-        "string": "#167a42",
-        "escapeSequence": "#8c6110",
+        "number": {
+            "foreground": "#8c6110",
+            "fontStyle": ""
+        },
+        "boolean": {
+            "foreground": "#8c6110",
+            "fontStyle": ""
+        },
+        "string": {
+            "foreground": "#167a42",
+            "fontStyle": ""
+        },
+        "escapeSequence": {
+            "foreground": "#8c6110",
+            "fontStyle": ""
+        },
 
         // Functions
-        "function": "#29757f",
+        "function": {
+            "foreground": "#29757f",
+            "fontStyle": ""
+        },
         "method": {
             "foreground": "#29757f",
             "fontStyle": "italic"
         },
 
         // Parameters & Variables
-        "parameter": "#d4d4d4",
-        "variable": "#d4d4d4",
-        "property": "#d4d4d4",
+        "parameter": {
+            "foreground": "#d4d4d4",
+            "fontStyle": ""
+        },
+        "variable": {
+            "foreground": "#d4d4d4",
+            "fontStyle": ""
+        },
+        "property": {
+            "foreground": "#d4d4d4",
+            "fontStyle": ""
+        },
 
         // Imports
-        "namespace": "#216dbf",
+        "namespace": {
+            "foreground": "#216dbf",
+            "fontStyle": ""
+        },
 
         // Types
         "class": {
@@ -870,7 +906,10 @@
         },
 
         // Preprocessor & Macros
-        "*.attribute": "#b04744",
+        "*.attribute": {
+            "foreground": "#b04744",
+            "fontStyle": ""
+        },
         "macro": {
             "foreground": "#b04744",
             "fontStyle": "bold"
