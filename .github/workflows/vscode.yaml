@@ -1,0 +1,25 @@
+name: Build VSCode extension
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - vscode/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vscode/
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: bobascheme-vsix
+          path: vscode/bobascheme-*.vsix
