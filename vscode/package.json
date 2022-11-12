@@ -3,6 +3,7 @@
   "displayName": "bobascheme",
   "description": "Simple dark color scheme",
   "version": "0.0.1",
+  "publisher": "BBaoVanC",
   "repository": "github:BBaoVanC/bobascheme",
   "homepage": "https://github.com/BBaoVanC/bobascheme#readme",
   "license": "MIT",
@@ -21,7 +22,7 @@
       }
     ]
   },
-  "dependencies": {
+  "devDependencies": {
     "vsce": "^2.13.0"
   },
   "scripts": {
