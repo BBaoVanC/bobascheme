@@ -26,6 +26,7 @@
     "vsce": "^2.13.0"
   },
   "scripts": {
-    "build": "vsce package"
+    "build": "vsce package",
+    "publish": "vsce publish"
   }
 }
