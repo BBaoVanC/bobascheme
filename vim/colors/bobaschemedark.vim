@@ -68,7 +68,7 @@ call s:hl("PmenuSel", s:white, s:dark_blue, "")
 call s:hl("PmenuSbar", "", s:black, "")
 call s:hl("PmenuThumb", "", s:fg, "")
 
-set foldcolumn=1
+set foldcolumn=auto:9
 call s:hl("SignColumn", "", s:bg, "")
 call s:hl("FoldColumn", s:dark_blue, s:bg, "")
 
