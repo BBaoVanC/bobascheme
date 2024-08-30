@@ -7,6 +7,7 @@ let g:colors_name = "bobaschemedark"
 
 let s:fg = "#d4d4d4"
 let s:bg = "none"
+let s:text_black = "111111"
 
 let s:gray = "#414141"
 
@@ -61,8 +62,8 @@ call s:hl("Folded", s:fg, s:dark_black, "")
 call s:hl("Visual", "", s:gray, "")
 call s:hl("VisualNOS", "", s:gray, "")
 
-call s:hl("Search", s:bg, s:dark_yellow, "")
-call s:hl("IncSearch", s:bg, s:yellow, "")
+call s:hl("Search", s:text_black, s:dark_yellow, "")
+call s:hl("IncSearch", s:text_black, s:yellow, "")
 
 call s:hl("Pmenu", s:fg, s:dark_black, "")
 call s:hl("PmenuSel", s:white, s:dark_blue, "")
