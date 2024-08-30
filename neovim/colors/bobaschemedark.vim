@@ -6,7 +6,7 @@ syntax reset
 let g:colors_name = "bobaschemedark"
 
 let s:fg = "#d4d4d4"
-let s:bg = "#111111"
+let s:bg = "none"
 
 let s:gray = "#414141"
 
@@ -40,7 +40,7 @@ function! s:hl(group, fg, bg, attr)
 endfun
 
 " ui related {{{
-call s:hl("Normal", s:fg, "none", "")
+call s:hl("Normal", s:fg, s:bg, "")
 call s:hl("MatchParen", s:fg, s:black, "")
 call s:hl("Whitespace", s:black, "", "")
 call s:hl("NonText", s:black, "", "")
