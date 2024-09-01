@@ -160,5 +160,33 @@ call s:hl("Removed", s:dark_red, "", "")
 " }}}
 
 
+" :h highlight-groups {{{
+call s:hl("ModeMsg", s:fg, "", "")
+call s:hl("MoreMsg", s:dark_white, "", "")
+" }}}
+
+
+" :h diagnostic-highlights" {{{
+call s:hl("DiagnosticError", s:fg, s:dark_red, "")
+call s:hl("DiagnosticWarn",  s:fg, s:dark_yellow, "")
+call s:hl("DiagnosticInfo",  s:fg, s:dark_cyan, "")
+call s:hl("DiagnosticHint",  s:fg, s:dark_blue, "")
+call s:hl("DiagnosticOk",    s:fg, s:dark_green, "")
+
+call s:hl("DiagnosticUnderlineError", "", "", "underline guisp=" . s:dark_red)
+call s:hl("DiagnosticUnderlineWarn", "", "",  "underline guisp=" . s:dark_yellow)
+call s:hl("DiagnosticUnderlineInfo", "", "",  "underline guisp=" . s:dark_cyan)
+call s:hl("DiagnosticUnderlineHint", "", "",  "underline guisp=" . s:dark_blue)
+call s:hl("DiagnosticUnderlineOk", "", "",    "underline guisp=" . s:dark_green)
+" }}}
+
+
+" :h treesitter-highlight-groups {{{
+call s:hl("@string.documentation", s:dark_magenta, "", "italic")
+call s:hl("@function.macro", s:dark_red, "", "bold")
+call s:hl("@function.method", s:dark_cyan, "", "italic")
+" }}}
+
+
 " misc
 call s:hl("Directory", s:dark_cyan, "", "")
