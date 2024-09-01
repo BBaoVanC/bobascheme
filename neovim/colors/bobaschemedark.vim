@@ -7,7 +7,7 @@ let g:colors_name = "bobaschemedark"
 
 let s:fg = "#d4d4d4"
 let s:bg = "none"
-let s:text_black = "111111"
+let s:text_black = "#111111"
 
 let s:gray = "#414141"
 
