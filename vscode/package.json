@@ -23,7 +23,7 @@
     ]
   },
   "devDependencies": {
-    "vsce": "^2.13.0"
+    "@vscode/vsce": "^3.0.0"
   },
   "scripts": {
     "build": "vsce package",
