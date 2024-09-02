@@ -124,7 +124,7 @@ call s:hl("Statement", s:dark_magenta, "", "")
 call s:hl("Conditional", s:dark_magenta, "", "")
 call s:hl("Repeat", s:dark_magenta, "", "")
 call s:hl("Label", s:dark_magenta, "", "")
-call s:hl("Operator", s:fg, "", "")
+call s:hl("Operator", s:fg, "", "") " also see Delimiter
 call s:hl("Keyword", s:dark_magenta, "", "")
 call s:hl("Exception", s:dark_magenta, "", "")
 
@@ -137,12 +137,12 @@ call s:hl("PreCondit", s:dark_red, "", "")
 call s:hl("Type", s:dark_blue, "", "")
 call s:hl("StorageClass", s:dark_blue, "", "")
 call s:hl("Structure", s:dark_blue, "", "bold")
-call s:hl("Typedef", s:dark_blue, "", "")
+call s:hl("Typedef", s:dark_blue, "", "bold")
 
 call s:hl("Special", s:dark_yellow, "", "")
 call s:hl("SpecialChar", s:dark_yellow, "", "")
 call s:hl("Tag", s:link_color, "", "italic,underline")
-call s:hl("Delimeter", s:dark_magenta, "", "bold,underline")
+call s:hl("Delimiter", s:fg, "", "") " also see Operator
 call s:hl("SpecialComment", s:dark_magenta, "", "italic")
 call s:hl("Debug", "", "", "inverse")
 
@@ -183,8 +183,16 @@ call s:hl("DiagnosticUnderlineOk", "", "",    "underline guisp=" . s:dark_green)
 
 " :h treesitter-highlight-groups {{{
 call s:hl("@string.documentation", s:dark_magenta, "", "italic")
+call s:hl("@comment.documentation", s:dark_magenta, "", "italic")
 call s:hl("@function.macro", s:dark_red, "", "bold")
 call s:hl("@function.method", s:dark_cyan, "", "italic")
+
+call s:hl("@module", s:dark_blue, "", "")
+call s:hl("@type", s:dark_blue, "", "bold")
+
+call s:hl("@tag", s:dark_blue, "", "")
+call s:hl("@tag.delimiter", s:fg, "", "")
+call s:hl("@tag.attribute", s:dark_cyan, "", "")
 " }}}
 
 
