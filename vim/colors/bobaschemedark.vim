@@ -50,6 +50,7 @@ call s:hl("SpellCap", "", "", "undercurl guisp=" . s:dark_green)
 call s:hl("SpellLocal", "", "", "undercurl guisp=" . s:dark_yellow)
 call s:hl("SpellRare", "", "", "undercurl guisp=" . s:dark_blue)
 
+call s:hl("ColorColumn", "", s:dark_black, "")
 call s:hl("Cursor", s:dark_black, s:fg, "")
 call s:hl("CursorColumn", "", s:dark_black, "")
 call s:hl("CursorLine", "", s:dark_black, "")
