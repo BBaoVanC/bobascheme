@@ -2,6 +2,16 @@ layout {
     focus-ring {
         active-color "#216dbf"
         inactive-color "#414141"
+    }
+}
+
+window-rule {
+    match is-urgent=true
+    shadow {
+        color "#ff0000cc"
+    }
+    /-border {
+        //on
         urgent-color "#b04744"
     }
 }
