@@ -10,11 +10,12 @@ See https://bottosson.github.io/posts/oklab/#implementation
 """
 
 from dataclasses import dataclass
+import math
 
 @dataclass
-class Oklch:
+class CIELCh:
     """
-    A color in the Oklab color space, written in terms of Lightness, Chroma,
+    A color in the CIELAB color space, written in terms of Lightness, Chroma,
     and Hue.
     """
 
@@ -28,16 +29,34 @@ class Oklch:
             self.C = 0
 
     def __str__(self):
-        return f"oklch({self.L}, {self.C}, {self.h})"
+        return f"lch({self.L}, {self.C}, {self.h})"
+
+    def to_lab(self):
+        return CIELAB.from_lch(self)
 
 
 @dataclass
-class Oklab:
+class CIELAB:
     """
-    A color in the Oklab color space, in terms of lightness, and the two a/b
+    A color in the CIELAB color space, in terms of lightness, and the two a/b
     opposing axes.
     """
 
     L: float
     a: float
     b: float
+
+    @classmethod
+    def from_lch(cls, lch: CIELCh):
+        hue = math.radians(lch.h)
+        return cls(
+            lch.L,
+            lch.C * math.cos(hue),
+            lch.C * math.sin(hue),
+        )
+
+@dataclass
+class CIEXYZ:
+    X: float
+    Y: float
+    Z: float
