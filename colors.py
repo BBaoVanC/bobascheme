@@ -60,32 +60,48 @@ class Color(Enum):
         return Color(self.value + 8)
 
 
+# these were for oklch, maybe keep for future use
+#_hues = {
+#    Color.BLACK: None,
+#    Color.RED: 30,
+#    Color.GREEN: 150,
+#    Color.YELLOW: 75,
+#    Color.BLUE: 250,
+#    Color.MAGENTA: 330,
+#    Color.CYAN: 200,
+#    Color.WHITE: None,
+#}
+
 _hues = {
-    Color.BLACK: None,
+    #Color.BLACK: None,
     Color.RED: 30,
     Color.GREEN: 150,
     Color.YELLOW: 75,
-    Color.BLUE: 250,
+    Color.BLUE: 270,
     Color.MAGENTA: 330,
-    Color.CYAN: 200,
+    Color.CYAN: 211,
     Color.WHITE: None,
 }
 
 _dark_bg = {
-    clr: Oklch(L=0.45, C=0.13, h=h) for clr, h in _hues.items()
+    clr: CIELCh(L=45, C=50, h=h) for clr, h in _hues.items()
 }
 _dark_fg = {
-    clr.fg(): Oklch(L=0.65, C=0.13, h=h) for clr, h in _hues.items()
+    clr.fg(): CIELCh(L=65, C=50, h=h) for clr, h in _hues.items()
 }
 _dark_misc = {
-
+    Color.BLACK: CIELCh(17.5, 0, None),
+    Color.WHITE: CIELCh(77.3, 0, None),
+    Color.FORE_BLACK: CIELCh(40, 0, None),
+    Color.FORE_WHITE: CIELCh(92.5, 0, None),
+    Color.URL:
 }
 bobascheme_dark = _dark_bg | _dark_fg | _dark_misc
 
-_light_bg = {
-    clr: Oklch(L=0.75, C=0.13, h=h) for clr, h in _hues.items()
-}
-_light_fg = {
-    clr.fg(): Oklch(L=0.55, C=0.13, h=h) for clr, h in _hues.items()
-}
-bobascheme_light = _light_bg | _light_fg
+#_light_bg = {
+#    clr: Oklch(L=0.75, C=0.13, h=h) for clr, h in _hues.items()
+#}
+#_light_fg = {
+#    clr.fg(): Oklch(L=0.55, C=0.13, h=h) for clr, h in _hues.items()
+#}
+#bobascheme_light = _light_bg | _light_fg

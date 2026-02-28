@@ -11,11 +11,17 @@ from colors import Color
 from colorspace import *
 
 
-def prepare_color_scheme_for_template(scheme: dict[colors.Color, Oklch]):
-    colors_oklch = {
-        "OKLCH__"+name.name: clr for name, clr in scheme.items()
+def prepare_cielch_for_template(scheme: dict[colors.Color, CIELCh]):
+    colors_cielch = {
+        "CIELCH__"+k.name: v for k, v in scheme.items()
     }
-    return colors_oklch
+    colors_hex = {
+        "HEX__"+k.name: v for k, v in map(
+            lambda c: format(int(sRGB.convert(c)), '06x'),
+            scheme.items()
+        )
+    }
+    return colors_cielch | colors_hex
 
 
 if __name__ == "__main__":
@@ -30,5 +36,6 @@ if __name__ == "__main__":
         dest_dir = Path("./themes")/theme.stem
         dest_dir.mkdir(exist_ok=True)
         with open(dest_dir/("bobascheme_dark"+theme.suffix), "w+") as f:
-            colors = prepare_color_scheme_for_template(colors.bobascheme_dark)
+            # convert the defined CIELCH
+            colors = prepare_cielch_for_template(colors.bobascheme_dark)
             f.write(tmpl.substitute(colors))

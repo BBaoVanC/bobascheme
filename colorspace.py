@@ -55,8 +55,48 @@ class CIELAB:
             lch.C * math.sin(hue),
         )
 
+    def to_xyz(self):
+        raise NotImplementedError
+
 @dataclass
 class CIEXYZ:
     X: float
     Y: float
     Z: float
+
+@dataclass
+class sRGB:
+    """
+    Represents a color in sRGB color space. WHen calling hex(), the R is placed
+    in most significant position, and B in the least significant.
+    """
+    R: int
+    G: int
+    B: int
+
+    def __post_init__(self):
+        assert 0 <= self.R <= 255
+        assert 0 <= self.G <= 255
+        assert 0 <= self.B <= 255
+
+    def __index__(self):
+        return (self.R * 2**16) + (self.G * 2**8) + (self.B)
+
+    @classmethod
+    def from_xyz(cls, CIEXYZ):
+        raise NotImplementedError
+
+    @classmethod
+    def convert(cls, clr):
+        # first, start converting the color in known ways towards XYZ
+        if isinstance(clr, CIELch):
+            clr = clr.to_lab()
+        if isinstance(clr, CIELAB):
+            clr = clr.to_xyz()
+
+        # if it wasn't able to get to XYZ, then that's an error
+        if not isinstance(clr, CIEXYZ):
+            raise NotImplementedError("Color needs to be CIEXYZ, which didn't \
+                happen somehow; it is currently " + type(clr))
+
+        return from_xyz(clr)
