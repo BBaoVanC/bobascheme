@@ -56,6 +56,8 @@ class CIELAB:
         )
 
     def to_xyz(self):
+        # the LAB is centered around a white point, standard is D65
+        # https://color-image.com/2011/10/monitor-calibration-2-degree-or-10-degree-observer-color-matching-functions/
         raise NotImplementedError
 
 @dataclass
