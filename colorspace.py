@@ -158,6 +158,18 @@ class CIEXYZ:
     Z: float
     white: WhitePoint
 
+    # http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
+    MA_BRADFORD = np.array([
+        [  0.8951000  0.2664000 -0.1614000 ],
+        [ -0.7502000  1.7135000  0.0367000 ],
+        [  0.0389000 -0.0685000  1.0296000 ],
+    ])
+    MA_BRADFOARD_INV = np.array([
+        [  0.9869929 -0.1470543  0.1599627 ],
+        [  0.4323053  0.5183603  0.0492912 ],
+        [ -0.0085287  0.0400428  0.9684867 ],
+    ])
+
     def adapt_bradford(self, new_white: WhitePoint):
         """
         Chromatic adaptation: to transform the color to be against a new white
@@ -166,9 +178,6 @@ class CIEXYZ:
         # Bradford transform implemented using constants from Bruce Lindbloom:
         # http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
 
-        # TODO: figure out whether to use numpy for everything, or reimplement
-        # this without numpy to avoid dependencies
-        MAinv = np.array(`kkk
 
 @dataclass
 class sRGB:
