@@ -56,20 +56,24 @@ class CIELAB:
         )
 
     def to_xyz(self):
-        # These references from Wikipedia are for XYZ -> LAB
-        # https://books.google.com/books?id=uZadszSGe9MC&q=lab+color+6-29+16-116&pg=PA61
-        # https://web.archive.org/web/20191228145700/http://eilv.cie.co.at/term/157
-
         # D50 coordinates fetched from CSS standard
         # https://www.w3.org/TR/css-color-4/#d50
-        white = CIEXYZ(0.345700, 0.358500, )
+        # These are given in xyY space, where Y is assumed 1. So we must
+        # convert to XYZ.
+        white_x = 0.345700
+        white_y = 0.358500
+        white_Y = 1
+        # This conversion is also taken from Wikipedia but I think you can
+        # somehow derive it if you have more motivation than I do now.
+        # https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xyY_color_space
+        white_X = white_Y / white_y * white_x
+        white_Z = white_Y / white_y * (1 - white_x - white_y)
+        white = CIEXYZ(white_X, white_Y, white_Z)
+        print(white)
 
         Lstar = self.L
         Astar = self.a
         Bstar = self.b
-        Xn = white.x
-        Yn = white.y
-        Zn = white.z
         # formulas from Wikipedia
         # https://en.wikipedia.org/wiki/CIELAB_color_space#From_CIELAB_to_CIEXYZ
         def finv(t):
@@ -78,8 +82,11 @@ class CIELAB:
                 return t**3
             else:
                 return 3*(delt**2)*(t - 4/29)
-        X = white.X
-        raise NotImplementedError
+        X = white.X * finv( (Lstar+16)/116 + (Astar/500) )
+        Y = white.Y * finv( (Lstar+16)/116 )
+        Z = white.Z * finv( (Lstar+16)/116 - (Bstar/200) )
+
+        return CIEXYZ(X, Y, Z)
 
 @dataclass
 class CIEXYZ:
@@ -113,8 +120,36 @@ class sRGB:
         return (self.R * 2**16) + (self.G * 2**8) + (self.B)
 
     @classmethod
-    def from_xyz(cls, CIEXYZ):
-        raise NotImplementedError
+    def from_xyz(cls, xyz: CIEXYZ):
+        # I have fetched matrix values from Wikipedia as the IEC standard costs money
+        # https://en.wikipedia.org/wiki/SRGB#Primaries
+        xyz = [xyz.X, xyz.Y, xyz.Z]
+        print(xyz)
+        primaries = {
+            "R": [ 3.2406255, -1.5372080, -0.4986286 ],
+            "G": [-0.9689307,  1.8757561,  0.0415175 ],
+            "B": [ 0.0557101, -0.2040211,  1.0569959 ],
+        }
+        linear_rgb = {
+            c: sum(map(lambda x: x[0] * x[1], zip(v, xyz))) for c, v in primaries.items()
+        }
+        print(linear_rgb)
+        # https://en.wikipedia.org/wiki/SRGB#Transfer_function_(%22gamma%22)
+        def gamma(r):
+            if r <= 0.0031308:
+                return 12.92 * r
+            else:
+                return 1.055 * r**(1/2.4) - 0.055
+        def clamp(v):
+            return max(v, 0, min(v, 1))
+        # WIP: FIXME: the issue I am running into now is that LAB converted to
+        # XYZ assuming a D50 white point, but sRGB assumes a D65 white point so
+        # I guess it has to be converted somewhere along the line.
+        #
+        # The matrix multiplicaton part is working for sure, and I believe all
+        # the RGB conversion to be also working correctly.
+        rgb = { c: gamma(clamp(v)) * 255 for c, v in linear_rgb.items() }
+        return sRGB(rgb["R"], rgb["G"], rgb["B"])
 
     @classmethod
     def convert(cls, clr):

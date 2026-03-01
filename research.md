@@ -4,9 +4,8 @@ I will attempt to keep a decent record of everything I looked up while
 implementing the color space conversions.
 
 In general, converting between color spaces involves first converting to the CIE
-XYZ space, which is a description based on the amount of stimulation of the 3
-different cone types we have, aka the three primary colors we perceive. X = red
-(long), Y = green (medium), Z = blue (short). However, an important disadvantage
+XYZ space, which is a really confusing space to understand. Y is the brightness,
+Z is sorta blue, and X is I don't even know. However, an important disadvantage
 of XYZ is that it's not perceptually uniform. Equal distances in different parts
 of the XYZ wheel don't correspond to colors that *feel* equally
 different.[^cie1931]
@@ -15,9 +14,9 @@ There are perceptual color spaces that try to fix this, i.e. CIELAB and Oklab.
 From a polar coordinate perspective, the radius is the intensity/saturation of
 the color, the angle is the hue, and the third dimension is the lightness.
 CIELAB is good, but there's a noticeable purple shift when you change the
-lightness of a blue hue. Oklab is newer and fixes that issue; I think it's
-supposed to be the preferred color space. It is the default color chooser space
-in many programs such as Adobe Photoshop.
+lightness of a blue hue. Oklab is newer (2020) and fixes that issue; I think
+it's supposed to be the preferred color space. It is the default color chooser
+space in many programs such as Adobe Photoshop.
 
 *Where is the center?* If we're talking polar coordinates, there has to be an
 origin that everything radiates out from.
