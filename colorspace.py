@@ -75,7 +75,7 @@ class CIELAB:
         Y = white.Y * finv( (Lstar+16)/116 )
         Z = white.Z * finv( (Lstar+16)/116 - (Bstar/200) )
 
-        return CIEXYZ(X, Y, Z)
+        return CIEXYZ(X, Y, Z, WhitePoint.D50())
 
 @dataclass
 class WhitePoint:
@@ -160,14 +160,14 @@ class CIEXYZ:
 
     # http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
     MA_BRADFORD = np.array([
-        [  0.8951000  0.2664000 -0.1614000 ],
-        [ -0.7502000  1.7135000  0.0367000 ],
-        [  0.0389000 -0.0685000  1.0296000 ],
+        [  0.8951000,  0.2664000, -0.1614000, ],
+        [ -0.7502000,  1.7135000,  0.0367000, ],
+        [  0.0389000, -0.0685000,  1.0296000, ],
     ])
-    MA_BRADFOARD_INV = np.array([
-        [  0.9869929 -0.1470543  0.1599627 ],
-        [  0.4323053  0.5183603  0.0492912 ],
-        [ -0.0085287  0.0400428  0.9684867 ],
+    MA_BRADFORD_INV = np.array([
+        [  0.9869929, -0.1470543,  0.1599627 ],
+        [  0.4323053,  0.5183603,  0.0492912 ],
+        [ -0.0085287,  0.0400428,  0.9684867 ],
     ])
 
     def adapt_bradford(self, new_white: WhitePoint):
@@ -177,17 +177,27 @@ class CIEXYZ:
         """
         # Bradford transform implemented using constants from Bruce Lindbloom:
         # http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
-
+        white_src = np.array([self.white.X, self.white.Y, self.white.Z])
+        white_dst = np.array([new_white.X, new_white.Y, new_white.Z])
+        LMS_src = self.MA_BRADFORD @ white_src
+        LMS_dst = self.MA_BRADFORD @ white_dst
+        out = self.MA_BRADFORD_INV @ np.diag(LMS_dst / LMS_src) @ \
+            self.MA_BRADFORD @ np.array([[self.X], [self.Y], [self.Z]])
+        # convert from column vector to just a list
+        out = out.flatten()
+        return CIEXYZ(out[0], out[1], out[2], new_white)
 
 @dataclass
 class sRGB:
     """
-    Represents a color in sRGB color space. WHen calling hex(), the R is placed
+    Represents a color in sRGB color space. When calling hex(), the R is placed
     in most significant position, and B in the least significant.
+
+    The RGB values are float but should be in range [0, 255]
     """
-    R: int
-    G: int
-    B: int
+    R: float
+    G: float
+    B: float
 
     def __post_init__(self):
         assert 0 <= self.R <= 255
@@ -199,19 +209,19 @@ class sRGB:
 
     @classmethod
     def from_xyz(cls, xyz: CIEXYZ):
+        xyz = xyz.adapt_bradford(WhitePoint.D65())
         # I have fetched matrix values from Wikipedia as the IEC standard costs money
         # https://en.wikipedia.org/wiki/SRGB#Primaries
         xyz = [xyz.X, xyz.Y, xyz.Z]
-        print(xyz)
         primaries = {
             "R": [ 3.2406255, -1.5372080, -0.4986286 ],
             "G": [-0.9689307,  1.8757561,  0.0415175 ],
             "B": [ 0.0557101, -0.2040211,  1.0569959 ],
         }
+        # TODO: switch to numpy?
         linear_rgb = {
             c: sum(map(lambda x: x[0] * x[1], zip(v, xyz))) for c, v in primaries.items()
         }
-        print(linear_rgb)
         # https://en.wikipedia.org/wiki/SRGB#Transfer_function_(%22gamma%22)
         def gamma(r):
             if r <= 0.0031308:
@@ -220,19 +230,13 @@ class sRGB:
                 return 1.055 * r**(1/2.4) - 0.055
         def clamp(v):
             return max(v, 0, min(v, 1))
-        # WIP: FIXME: the issue I am running into now is that LAB converted to
-        # XYZ assuming a D50 white point, but sRGB assumes a D65 white point so
-        # I guess it has to be converted somewhere along the line.
-        #
-        # The matrix multiplicaton part is working for sure, and I believe all
-        # the RGB conversion to be also working correctly.
         rgb = { c: gamma(clamp(v)) * 255 for c, v in linear_rgb.items() }
         return sRGB(rgb["R"], rgb["G"], rgb["B"])
 
     @classmethod
     def convert(cls, clr):
         # first, start converting the color in known ways towards XYZ
-        if isinstance(clr, CIELch):
+        if isinstance(clr, CIELCh):
             clr = clr.to_lab()
         if isinstance(clr, CIELAB):
             clr = clr.to_xyz()
@@ -240,6 +244,6 @@ class sRGB:
         # if it wasn't able to get to XYZ, then that's an error
         if not isinstance(clr, CIEXYZ):
             raise NotImplementedError("Color needs to be CIEXYZ, which didn't \
-                happen somehow; it is currently " + type(clr))
+                happen somehow; it is currently " + str(type(clr)))
 
-        return from_xyz(clr)
+        return sRGB.from_xyz(clr)
