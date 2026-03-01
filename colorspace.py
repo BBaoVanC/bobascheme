@@ -11,12 +11,14 @@ See https://bottosson.github.io/posts/oklab/#implementation
 
 from dataclasses import dataclass
 import math
+import numpy as np
 
 @dataclass
 class CIELCh:
     """
     A color in the CIELAB color space, written in terms of Lightness, Chroma,
-    and Hue.
+    and Hue. This is just a polar version of the rectangular CIELAB space. It
+    can be transformed exactly as such.
     """
 
     L: float
@@ -56,20 +58,7 @@ class CIELAB:
         )
 
     def to_xyz(self):
-        # D50 coordinates fetched from CSS standard
-        # https://www.w3.org/TR/css-color-4/#d50
-        # These are given in xyY space, where Y is assumed 1. So we must
-        # convert to XYZ.
-        white_x = 0.345700
-        white_y = 0.358500
-        white_Y = 1
-        # This conversion is also taken from Wikipedia but I think you can
-        # somehow derive it if you have more motivation than I do now.
-        # https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xyY_color_space
-        white_X = white_Y / white_y * white_x
-        white_Z = white_Y / white_y * (1 - white_x - white_y)
-        white = CIEXYZ(white_X, white_Y, white_Z)
-        print(white)
+        white = WhitePoint.D50()
 
         Lstar = self.L
         Astar = self.a
@@ -89,17 +78,97 @@ class CIELAB:
         return CIEXYZ(X, Y, Z)
 
 @dataclass
-class CIEXYZ:
+class WhitePoint:
     """
-    https://en.wikipedia.org/wiki/CIE_1931_color_space
+    A reference white point stored in terms of CIE XYZ coordinates. This space
+    has the same geometry as the CIEXYZ object but the coordinate is
+    semantically the white point itself, rather than being a coordinate
+    referenced around a certain white point.
     """
+
     X: float
     Y: float
     Z: float
 
-    #@classmethod
-    #def from_xy(cls, x: float, y: float):
-    #    return CIEXYZ(x, y, 1 - x - y)
+    @classmethod
+    def from_xyY(cls, x, y, Y):
+        # This conversion is also taken from Wikipedia but I think you can
+        # somehow derive it if you have more motivation than I do now.
+        # https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xyY_color_space
+        X = Y / y * x
+        Z = Y / y * (1 - x - y)
+        return WhitePoint(X, Y, Z)
+
+    @classmethod
+    def D50(cls):
+        """
+        https://www.w3.org/TR/css-color-4/#d50
+        """
+
+        # D50 coordinates fetched from CSS standard
+        # Those are given in xyY space, where Y is assumed 1. So we must
+        # convert to XYZ.
+        return WhitePoint.from_xyY(0.345700, 0.358500, 1)
+
+    @classmethod
+    def D65(cls):
+        """
+        https://www.w3.org/TR/css-color-4/#d65
+        """
+        return WhitePoint.from_xyY(0.312700, 0.329000, 1)
+
+
+@dataclass
+class CIEXYZ:
+    """
+    CIE XYZ coordinates, combined with a reference white point that coordinates
+    are aligned against.
+
+    https://en.wikipedia.org/wiki/CIE_1931_color_space
+
+    ## Why do we need a white point here?
+
+    XYZ coordinates are absolute, but that's the issue. A pure gray will have
+    its X and Y positions wherever the white point is. Transforming between
+    different color spaces requires you to know where this white point, so you
+    know what central point to be stretching and transforming the space around.
+
+    If I understand correctly, then the white point only matters when we want
+    to reproduce the color. For the color to be perceived correctly in the
+    context of the lighting that the eye is currently under, it has to be
+    "adapted" so that the neutrals/grays are the same color that your eye has
+    automatically color balanced to in the environment.
+
+    For example, the numbers in the sRGB transformation matrix are written with
+    the assumption of a D65 white point. So it will stretch everything around
+    D65 as the center point. But if your colors were transformed to XYZ
+    assuming a D50 white point, like with CIELAB, then the grays will be at the
+    D50 point instead, and will get stretched away from the D65 point. If I
+    understand correctly, this means all the colors will be tilted warmer.
+
+    TLDR: the `white` property gives the coordinate of pure white, lying on the
+    axis that human eyes will interpret as being neutral black/gray/white. This
+    is needed for color space transformations to know the center point that
+    should be unmodified, while everything else is stretched and transformed
+    around it.
+    """
+
+    X: float
+    Y: float
+    Z: float
+    white: WhitePoint
+
+    def adapt_bradford(self, new_white: WhitePoint):
+        """
+        Chromatic adaptation: to transform the color to be against a new white
+        point
+        """
+        # Bradford transform implemented using constants from Bruce Lindbloom:
+        # http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
+
+        # TODO: figure out whether to use numpy for everything, or reimplement
+        # this without numpy to avoid dependencies
+        MAinv = np.array(`kkk
 
 @dataclass
 class sRGB:
