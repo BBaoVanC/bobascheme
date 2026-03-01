@@ -56,15 +56,43 @@ class CIELAB:
         )
 
     def to_xyz(self):
-        # the LAB is centered around a white point, standard is D65
-        # https://color-image.com/2011/10/monitor-calibration-2-degree-or-10-degree-observer-color-matching-functions/
+        # These references from Wikipedia are for XYZ -> LAB
+        # https://books.google.com/books?id=uZadszSGe9MC&q=lab+color+6-29+16-116&pg=PA61
+        # https://web.archive.org/web/20191228145700/http://eilv.cie.co.at/term/157
+
+        # D50 coordinates fetched from CSS standard
+        # https://www.w3.org/TR/css-color-4/#d50
+        white = CIEXYZ(0.345700, 0.358500, )
+
+        Lstar = self.L
+        Astar = self.a
+        Bstar = self.b
+        Xn = white.x
+        Yn = white.y
+        Zn = white.z
+        # formulas from Wikipedia
+        # https://en.wikipedia.org/wiki/CIELAB_color_space#From_CIELAB_to_CIEXYZ
+        def finv(t):
+            delt = 6/29
+            if t > delt:
+                return t**3
+            else:
+                return 3*(delt**2)*(t - 4/29)
+        X = white.X
         raise NotImplementedError
 
 @dataclass
 class CIEXYZ:
+    """
+    https://en.wikipedia.org/wiki/CIE_1931_color_space
+    """
     X: float
     Y: float
     Z: float
+
+    #@classmethod
+    #def from_xy(cls, x: float, y: float):
+    #    return CIEXYZ(x, y, 1 - x - y)
 
 @dataclass
 class sRGB:

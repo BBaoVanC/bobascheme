@@ -94,7 +94,17 @@ _dark_misc = {
     Color.WHITE: CIELCh(77.3, 0, None),
     Color.FORE_BLACK: CIELCh(40, 0, None),
     Color.FORE_WHITE: CIELCh(92.5, 0, None),
-    Color.URL:
+
+    Color.BG: CIELCh(5, 0, None),
+    Color.FG: CIELCh(85, 0, None),
+    Color.BG1: CIELCh(12.5, 0, None),
+    Color.FG1: CIELCh(85.0, 0, None),
+    Color.BG2: CIELCh(20.0, 0, None),
+    Color.FG2: CIELCh(85.0, 0, None),
+    Color.BG3: CIELCh(27.5, 0, None),
+    Color.FG3: CIELCh(92.5, 0, None),
+
+    Color.URL: CIELCh(60, 60, 270),
 }
 bobascheme_dark = _dark_bg | _dark_fg | _dark_misc
 
