@@ -205,7 +205,7 @@ class sRGB:
         assert 0 <= self.B <= 255
 
     def __index__(self):
-        return (self.R * 2**16) + (self.G * 2**8) + (self.B)
+        return (round(self.R) * 2**16) + (round(self.G) * 2**8) + (round(self.B))
 
     @classmethod
     def from_xyz(cls, xyz: CIEXYZ):

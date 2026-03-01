@@ -15,8 +15,6 @@ def prepare_cielch_for_template(scheme: dict[colors.Color, CIELCh]):
     colors_cielch = {
         "CIELCH__"+k.name: v for k, v in scheme.items()
     }
-    print("sdakjfasdf")
-    print(sRGB.convert(scheme[colors.Color.RED]))
     colors_hex = {
         "HEX__"+k.name: format(int(sRGB.convert(v)), '06x') for k, v in scheme.items()
     }
