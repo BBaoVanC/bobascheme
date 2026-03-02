@@ -27,12 +27,14 @@ if __name__ == "__main__":
     # will become the dir name. The extension will be kept. Then inside the
     # dir, bobascheme_dark and bobascheme_light files will be created with that
     # kept extension.
-    for theme in Path("./templates").iterdir():
-        with open(Path("./templates")/theme.name, "r") as f:
+    for template_path in Path("./templates").iterdir():
+        theme_dest_fname = "bobascheme_dark"+template_path.suffix
+        theme_dest_subdir = template_path.stem.replace("SLASH", "/")
+        theme_dest = Path("./themes")/theme_dest_subdir/theme_dest_fname
+        with open(template_path, "r") as f:
             tmpl = Template(f.read())
 
-        dest_dir = Path("./themes")/theme.stem
-        dest_dir.mkdir(exist_ok=True)
-        with open(dest_dir/("bobascheme_dark"+theme.suffix), "w+") as f:
-            # convert the defined CIELCH
-            f.write(tmpl.substitute(colors))
+        theme_dest.parent.mkdir(parents=True, exist_ok=True)
+        with open(theme_dest, "w+") as f:
+            print(f"saving {theme_dest}")
+            f.write(tmpl.substitute(color_variables))
