@@ -3,7 +3,7 @@ set background=dark
 highlight clear
 syntax reset
 
-let g:colors_name = "bobaschemedark"
+let g:colors_name = "bobascheme_dark"
 
 let s:fg = "#d4d4d4"
 let s:bg = "none"
