@@ -41,7 +41,7 @@ class CIELCh:
 class CIELAB:
     """
     A color in the CIELAB color space, in terms of lightness, and the two a/b
-    opposing axes.
+    opposing axes. The white point is D50; this is used when converting to XYZ.
     """
 
     L: float
@@ -141,9 +141,9 @@ class CIEXYZ:
 
     For example, the numbers in the sRGB transformation matrix are written with
     the assumption of a D65 white point. So it will stretch everything around
-    D65 as the center point. But if your colors were transformed to XYZ
-    assuming a D50 white point, like with CIELAB, then the grays will be at the
-    D50 point instead, and will get stretched away from the D65 point. If I
+    D65's axis as the center. But if your colors were transformed to XYZ
+    assuming a D50 white point, like with CIELAB, then the grays will be along
+    the D50 axis instead, and will get stretched away from the D65 point. If I
     understand correctly, this means all the colors will be tilted warmer.
 
     TLDR: the `white` property gives the coordinate of pure white, lying on the
