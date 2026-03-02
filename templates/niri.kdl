@@ -1,7 +1,7 @@
 layout {
     focus-ring {
-        active-color "#216dbf"
-        inactive-color "#414141"
+        active-color "#$HEX__BLUE"
+        inactive-color "#$HEX__BG3"
     }
 }
 
@@ -12,6 +12,6 @@ window-rule {
     }
     /-border {
         //on
-        urgent-color "#b04744"
+        urgent-color "#$HEX__RED"
     }
 }

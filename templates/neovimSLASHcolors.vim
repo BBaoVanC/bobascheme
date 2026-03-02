@@ -3,33 +3,33 @@ set background=dark
 highlight clear
 syntax reset
 
-let g:colors_name = "bobaschemedark"
+let g:colors_name = "bobascheme_dark"
 
-let s:fg = "#d4d4d4"
+let s:fg = "#$HEX__FG"
 let s:bg = "none"
-let s:text_black = "#111111"
+let s:text_black = "#$HEX__BG"
 
-let s:gray = "#414141"
+let s:gray = "#$HEX__BG3"
 
-let s:dark_black    = "#2b2b2b"
-let s:dark_red      = "#b04744"
-let s:dark_yellow   = "#8c6110"
-let s:dark_green    = "#167a42"
-let s:dark_cyan     = "#29757f"
-let s:dark_blue     = "#216dbf"
-let s:dark_magenta  = "#9f4b95"
-let s:dark_white    = "#bfbfbf"
+let s:dark_black    = "#$HEX__BLACK"
+let s:dark_red      = "#$HEX__RED"
+let s:dark_yellow   = "#$HEX__YELLOW"
+let s:dark_green    = "#$HEX__GREEN"
+let s:dark_cyan     = "#$HEX__CYAN"
+let s:dark_blue     = "#$HEX__BLUE"
+let s:dark_magenta  = "#$HEX__MAGENTA"
+let s:dark_white    = "#$HEX__WHITE"
 
-let s:black         = "#5e5e5e"
-let s:red           = "#eb7c74"
-let s:yellow        = "#b78738"
-let s:green         = "#54b073"
-let s:cyan          = "#61aab3"
-let s:blue          = "#66a1f8"
-let s:magenta       = "#d87fcc"
-let s:white         = "#e9e9e9"
+let s:black         = "#$HEX__FORE_BLACK"
+let s:red           = "#$HEX__FORE_RED"
+let s:yellow        = "#$HEX__FORE_YELLOW"
+let s:green         = "#$HEX__FORE_GREEN"
+let s:cyan          = "#$HEX__FORE_CYAN"
+let s:blue          = "#$HEX__FORE_BLUE"
+let s:magenta       = "#$HEX__FORE_MAGENTA"
+let s:white         = "#$HEX__FORE_WHITE"
 
-let s:link_color    = "#3a94fb"
+let s:link_color    = "#$HEX__URL"
 
 
 function! s:hl(group, fg, bg, attr)
