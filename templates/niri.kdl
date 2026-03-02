@@ -1,0 +1,17 @@
+layout {
+    focus-ring {
+        active-color "#$HEX__BLUE"
+        inactive-color "#$HEX__BG3"
+    }
+}
+
+window-rule {
+    match is-urgent=true
+    shadow {
+        color "#ff0000cc"
+    }
+    /-border {
+        //on
+        urgent-color "#$HEX__RED"
+    }
+}

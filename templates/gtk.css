@@ -1,0 +1,31 @@
+@define-color bobascheme-background-0 #$HEX__BG;
+@define-color bobascheme-background-1 #$HEX__BG1;
+@define-color bobascheme-background-2 #$HEX__BG2;
+@define-color bobascheme-background-3 #$HEX__BG3;
+
+@define-color bobascheme-text-0 #$HEX__FG;
+@define-color bobascheme-text-1 #$HEX__FG1;
+@define-color bobascheme-text-2 #$HEX__FG2;
+@define-color bobascheme-text-3 #$HEX__FG3;
+
+@define-color bobascheme-link-0 #$HEX__URL;
+
+/* 16 colors */
+
+@define-color bobascheme-black-dark     #$HEX__BLACK;
+@define-color bobascheme-red-dark       #$HEX__RED;
+@define-color bobascheme-green-dark     #$HEX__GREEN;
+@define-color bobascheme-yellow-dark    #$HEX__YELLOW;
+@define-color bobascheme-blue-dark      #$HEX__BLUE;
+@define-color bobascheme-magenta-dark   #$HEX__MAGENTA;
+@define-color bobascheme-cyan-dark      #$HEX__CYAN;
+@define-color bobascheme-white-dark     #$HEX__WHITE;
+
+@define-color bobascheme-black-light    #$HEX__FORE_BLACK;
+@define-color bobascheme-red-light      #$HEX__FORE_RED;
+@define-color bobascheme-green-light    #$HEX__FORE_GREEN;
+@define-color bobascheme-yellow-light   #$HEX__FORE_YELLOW;
+@define-color bobascheme-blue-light     #$HEX__FORE_BLUE;
+@define-color bobascheme-magenta-light  #$HEX__FORE_MAGENTA;
+@define-color bobascheme-cyan-light     #$HEX__FORE_CYAN;
+@define-color bobascheme-white-light    #$HEX__FORE_WHITE;
