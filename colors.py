@@ -72,22 +72,41 @@ class Color(Enum):
 #    Color.WHITE: None,
 #}
 
-_hues = {
-    #Color.BLACK: None,
-    Color.RED: 30,
-    Color.GREEN: 150,
-    Color.YELLOW: 75,
-    Color.BLUE: 270,
-    Color.MAGENTA: 330,
-    Color.CYAN: 211,
-    Color.WHITE: None,
-}
+# these _hues and _dark_bg and _dark_fg are based on me assuming I had used
+# constant lightness and chroma for all the colors; that doesn't seem to be the
+# case so I will manually write them all out instead.
+#_hues = {
+#    #Color.BLACK: None,
+#    Color.RED: 30,
+#    Color.GREEN: 150,
+#    Color.YELLOW: 75,
+#    Color.BLUE: 270,
+#    Color.MAGENTA: 330,
+#    Color.CYAN: 210,
+#    Color.WHITE: None,
+#}
 
-_dark_bg = {
-    clr: CIELCh(L=45, C=50, h=h) for clr, h in _hues.items()
-}
-_dark_fg = {
-    clr.fg(): CIELCh(L=65, C=50, h=h) for clr, h in _hues.items()
+#_dark_bg = {
+#    clr: CIELCh(L=45, C=50, h=h) for clr, h in _hues.items()
+#}
+#_dark_fg = {
+#    clr.fg(): CIELCh(L=65, C=50, h=h) for clr, h in _hues.items()
+#}
+
+_dark_colors = {
+    Color.RED: CIELCh(45, 50, 30),
+    Color.GREEN: CIELCh(45, 45, 150),
+    Color.YELLOW: CIELCh(45, 50, 75),
+    Color.BLUE: CIELCh(45, 50, 270),
+    Color.MAGENTA: CIELCh(45, 50, 330),
+    Color.CYAN: CIELCh(45, 25, 210),
+
+    Color.FORE_RED: CIELCh(65, 50, 30),
+    Color.FORE_GREEN: CIELCh(65, 45, 150),
+    Color.FORE_YELLOW: CIELCh(60, 50, 75),
+    Color.FORE_BLUE: CIELCh(65, 50, 270),
+    Color.FORE_MAGENTA: CIELCh(65, 50, 330),
+    Color.FORE_CYAN: CIELCh(65, 25, 210),
 }
 _dark_misc = {
     Color.BLACK: CIELCh(17.5, 0, None),
@@ -106,7 +125,8 @@ _dark_misc = {
 
     Color.URL: CIELCh(60, 60, 270),
 }
-bobascheme_dark = _dark_bg | _dark_fg | _dark_misc
+#bobascheme_dark = _dark_bg | _dark_fg | _dark_misc
+bobascheme_dark = _dark_colors | _dark_misc
 
 #_light_bg = {
 #    clr: Oklch(L=0.75, C=0.13, h=h) for clr, h in _hues.items()
