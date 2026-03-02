@@ -1,0 +1,31 @@
+name: Generate theme files
+
+on:
+  push:
+    branches: ["actions"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate themes
+        run: ./main.py
+      # Make a worktree so we can copy the generated theme files there;
+      # If we instead were to check out the dist branch, it would immediately
+      # overwrite our theme files with what is already on the branch
+      - name: Copy to dist branch
+        run: |
+          git worktree add dist dist
+          cp -a themes/. dist/themes/
+      - name: Commit and push
+        run: |
+          cd dist/
+          git add -f themes/
+          git config user.name 'GitHub Actions'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "build: ${{ github.sha }}"
+          git push
