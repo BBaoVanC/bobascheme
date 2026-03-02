@@ -36,5 +36,5 @@ if __name__ == "__main__":
 
         theme_dest.parent.mkdir(parents=True, exist_ok=True)
         with open(theme_dest, "w+") as f:
-            print(f"saving {theme_dest}")
+            print(f"rendering {template_path} to {theme_dest}")
             f.write(tmpl.substitute(color_variables))
