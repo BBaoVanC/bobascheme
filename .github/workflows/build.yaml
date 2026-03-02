@@ -2,7 +2,7 @@ name: Generate theme files
 
 on:
   push:
-    branches: ["actions"]
+    branches: ["master"]
   workflow_dispatch:
 
 jobs:
