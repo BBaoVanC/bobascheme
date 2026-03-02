@@ -22,6 +22,7 @@ def prepare_cielch_for_template(scheme: dict[colors.Color, CIELCh]):
 
 
 if __name__ == "__main__":
+    color_variables = prepare_cielch_for_template(colors.bobascheme_dark)
     # The template file should be named whatever the specific program is. This
     # will become the dir name. The extension will be kept. Then inside the
     # dir, bobascheme_dark and bobascheme_light files will be created with that
@@ -34,5 +35,4 @@ if __name__ == "__main__":
         dest_dir.mkdir(exist_ok=True)
         with open(dest_dir/("bobascheme_dark"+theme.suffix), "w+") as f:
             # convert the defined CIELCH
-            colors = prepare_cielch_for_template(colors.bobascheme_dark)
             f.write(tmpl.substitute(colors))
