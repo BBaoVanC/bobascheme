@@ -1,0 +1,69 @@
+@define-color bobascheme-background-0 #111111;  /* lch(5, 0, X) */
+@define-color bobascheme-background-1 #212121;  /* lch(12.5, 0, X) */
+@define-color bobascheme-background-2 #303030;  /* lch(20, 0, X) */
+@define-color bobascheme-background-3 #414141;  /* lch(27.5, 0, X) */
+
+@define-color bobascheme-background-pink-1      #331821;  /* lch(12.5, 15, 0) */
+@define-color bobascheme-background-red-1       #331917;  /* lch(12.5, 15, 30) */
+@define-color bobascheme-background-orange-1    #2e1c0e;  /* lch(12.5, 15, 60) */
+@define-color bobascheme-background-yellow-1    #262008;  /* lch(12.5, 15, 90) */
+@define-color bobascheme-background-lime-1      #1b230c;  /* lch(12.5, 15, 120) */
+@define-color bobascheme-background-green-1     #0e2516;  /* lch(12.5, 15, 150) */
+@define-color bobascheme-background-turquoise-1 #012620;  /* lch(12.5, 15, 180) */
+@define-color bobascheme-background-teal-1      #00262b;  /* lch(12.5, 15, 210) -- out of sRGB */
+@define-color bobascheme-background-cerulean-1  #032432;  /* lch(12.5, 15, 240) */
+@define-color bobascheme-background-blue-1      #152135;  /* lch(12.5, 15, 270) */
+@define-color bobascheme-background-purple-1    #241d33;  /* lch(12.5, 15, 300) */
+@define-color bobascheme-background-magenta-1   #2e1a2b;  /* lch(12.5, 15, 330) */
+
+@define-color bobascheme-background-pink-2      #4b2431;  /* lch(20, 20, 0) */
+@define-color bobascheme-background-red-2       #4a2623;  /* lch(20, 20, 30) */
+@define-color bobascheme-background-orange-2    #432a17;  /* lch(20, 20, 60) */
+@define-color bobascheme-background-yellow-2    #373012;  /* lch(20, 20, 90) */
+@define-color bobascheme-background-lime-2      #283416;  /* lch(20, 20, 120) */
+@define-color bobascheme-background-green-2     #163721;  /* lch(20, 20, 150) */
+@define-color bobascheme-background-turquoise-2 #003830;  /* lch(20, 20, 180) -- out of sRGB */
+@define-color bobascheme-background-teal-2      #00373e;  /* lch(20, 20, 210) -- out of sRGB */
+@define-color bobascheme-background-cerulean-2  #013549;  /* lch(20, 20, 240) */
+@define-color bobascheme-background-blue-2      #1f314e;  /* lch(20, 20, 270) */
+@define-color bobascheme-background-purple-2    #352c4a;  /* lch(20, 20, 300) */
+@define-color bobascheme-background-magenta-2   #43263f;  /* lch(20, 20, 330) */
+
+@define-color bobascheme-background-accent-1 @background-blue-1;
+@define-color bobascheme-background-accent-2 @background-blue-2;
+
+@define-color bobascheme-text-0 #d4d4d4;  /* lch(85, 0, X) */
+@define-color bobascheme-text-1 #d4d4d4;  /* lch(85, 0, X) */
+@define-color bobascheme-text-2 #d4d4d4;  /* lch(85, 0, X) */
+@define-color bobascheme-text-3 #e9e9e9;  /* lch(92.5, 0, X) */
+
+@define-color bobascheme-text-gray-0 #ababab; /* lch(70, 0, X) */
+@define-color bobascheme-text-gray-1 #919191; /* lch(60, 0, X) */
+
+@define-color bobascheme-link-0 #3a94fb; /* lch(60, 60, 270) */
+
+@define-color bobascheme-figure-border #1f5593; /* lch(35, 40, 270) */
+
+@define-color bobascheme-pagination-active-hover-text black;
+@define-color bobascheme-pagination-active-background #1a3d69; /* lch(25, 30, 270) */
+@define-color bobascheme-pagination-active-hover-background #2061a8; /* lch(40, 45, 270) */
+
+/* 16 colors */
+
+@define-color bobascheme-black-dark     #2b2b2b;
+@define-color bobascheme-red-dark       #b04744;
+@define-color bobascheme-green-dark     #167a42;
+@define-color bobascheme-yellow-dark    #8c6110;
+@define-color bobascheme-blue-dark      #216dbf;
+@define-color bobascheme-magenta-dark   #9f4b95;
+@define-color bobascheme-cyan-dark      #29757f;
+@define-color bobascheme-white-dark     #bfbfbf;
+
+@define-color bobascheme-black-light    #5e5e5e;
+@define-color bobascheme-red-light      #eb7c74;
+@define-color bobascheme-green-light    #54b073;
+@define-color bobascheme-yellow-light   #b78738;
+@define-color bobascheme-blue-light     #66a1f8;
+@define-color bobascheme-magenta-light  #d87fcc;
+@define-color bobascheme-cyan-light     #61aab3;
+@define-color bobascheme-white-light    #e9e9e9;
