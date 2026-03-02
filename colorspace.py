@@ -1,12 +1,7 @@
 """
-Implement color conversions, using CIE XYZ as an intermediate. Important for
-converting Oklch colors to sRGB for programs that don't support directly
-embedding oklab numbers in their configs.
-
-Implement conversions OKLAB/OKLCH to/from sRGB, for programs that don't support
-oklch numbers directly in their config files.
-
-See https://bottosson.github.io/posts/oklab/#implementation
+Implement color conversions. Many of the programs I use don't support putting
+LCH colors directly in their config files, so they must be converted to rgb
+and/or hex first.
 """
 
 from dataclasses import dataclass
