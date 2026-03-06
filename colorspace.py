@@ -190,6 +190,8 @@ class sRGB:
 
     The RGB values are float but should be in range [0, 255]
     """
+    # TODO: should these instead be int, and use np.round inside from_xyz to
+    # round at the very start?
     R: float
     G: float
     B: float
@@ -202,31 +204,28 @@ class sRGB:
     def __index__(self):
         return (round(self.R) * 2**16) + (round(self.G) * 2**8) + (round(self.B))
 
+    MA = np.array([
+        [ 3.2406255, -1.5372080, -0.4986286 ],
+        [-0.9689307,  1.8757561,  0.0415175 ],
+        [ 0.0557101, -0.2040211,  1.0569959 ],
+    ])
+
     @classmethod
     def from_xyz(cls, xyz: CIEXYZ):
         xyz = xyz.adapt_bradford(WhitePoint.D65())
         # I have fetched matrix values from Wikipedia as the IEC standard costs money
         # https://en.wikipedia.org/wiki/SRGB#Primaries
-        xyz = [xyz.X, xyz.Y, xyz.Z]
-        primaries = {
-            "R": [ 3.2406255, -1.5372080, -0.4986286 ],
-            "G": [-0.9689307,  1.8757561,  0.0415175 ],
-            "B": [ 0.0557101, -0.2040211,  1.0569959 ],
-        }
-        # TODO: switch to numpy?
-        linear_rgb = {
-            c: sum(map(lambda x: x[0] * x[1], zip(v, xyz))) for c, v in primaries.items()
-        }
+        xyz = np.array([xyz.X, xyz.Y, xyz.Z])
+        linear_rgb = cls.MA @ xyz
         # https://en.wikipedia.org/wiki/SRGB#Transfer_function_(%22gamma%22)
         def gamma(r):
             if r <= 0.0031308:
                 return 12.92 * r
             else:
                 return 1.055 * r**(1/2.4) - 0.055
-        def clamp(v):
-            return max(v, 0, min(v, 1))
-        rgb = { c: gamma(clamp(v)) * 255 for c, v in linear_rgb.items() }
-        return sRGB(rgb["R"], rgb["G"], rgb["B"])
+        gamma = np.vectorize(gamma)
+        rgb = gamma(np.clip(linear_rgb, 0.0, 1.0)) * 255
+        return sRGB(*rgb)
 
     @classmethod
     def convert(cls, clr):
