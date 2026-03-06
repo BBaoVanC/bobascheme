@@ -24,7 +24,7 @@ jobs:
       - name: Copy to dist branch
         run: |
           git worktree add dist dist
-          cp -a themes/. dist/themes/
+          rsync -av --delete themes/. dist/themes/
       - name: Commit and push
         run: |
           cd dist/
