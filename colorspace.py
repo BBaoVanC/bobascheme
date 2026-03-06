@@ -73,6 +73,37 @@ class CIELAB:
         return CIEXYZ(X, Y, Z, WhitePoint.D50())
 
 @dataclass
+class Oklab:
+    """
+    Oklab is a more accurate model than CIELAB. Especially noticeable on blue,
+    where on CIELAB there's a noticeable purple shift depending on lightness.
+    Also, the math in Oklab is significantly simpler, and it uses D65 so no
+    adaptation is needed.
+    """
+
+    L: float
+    a: float
+    b: float
+
+    # https://bottosson.github.io/posts/oklab/#implementation
+    M1_INV = np.linalg.inv(np.array([
+        [ +0.8189330101, +0.0329845436, +0.0482003018 ],
+        [ +0.3618667424, +0.9293118715, +0.2643662691 ],
+        [ -0.1288597137, +0.0361456387, +0.6338517070 ],
+    ]))
+    M2_INV = np.linalg.inv(np.array([
+        [ +0.2104542553, +1.9779984951, +0.0259040371 ],
+        [ +0.7936177850, -2.4285922050, +0.7827717662 ],
+        [ -0.0040720468, +0.4505937099, -0.8086757660 ],
+
+    ]))
+    def to_xyz(self):
+        lms_prime = M2_INV @ np.array([self.L, self.a, self.b])
+        lms = lms_prime ** 3
+        xyz = M1_INV @ lms
+        return CIEXYZ(*xyz)
+
+@dataclass
 class WhitePoint:
     """
     A reference white point stored in terms of CIE XYZ coordinates. This space
