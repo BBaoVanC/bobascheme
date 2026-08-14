@@ -1,0 +1,48 @@
+{
+	"dark": {
+		"mPrimary": "#$HEX__BLUE",
+		"mOnPrimary": "#$HEX__BG",
+		"mSecondary": "#$HEX__CYAN",
+		"mOnSecondary": "#$HEX__BG",
+		"mTertiary": "#$HEX__MAGENTA",
+		"mOnTertiary": "#$HEX__BG",
+		"mError": "#$HEX__RED",
+		"mOnError": "#$HEX__BG",
+		"mSurface": "#$HEX__BG",
+		"mOnSurface": "#$HEX__FG",
+		"mSurfaceVariant": "#$HEX__BG1",
+		"mOnSurfaceVariant": "#$HEX__FG1",
+		"mOutline": "#$HEX__FG3",
+		"mShadow": "#$HEX__BLACK",
+		"mHover": "#$HEX__BG2",
+		"mOnHover": "#$HEX__FG2",
+		"terminal": {
+			"background": "#$HEX__BG",
+			"foreground": "#$HEX__FG",
+			"cursor": "#$HEX__FG",
+			"cursorText": "#$HEX__BG",
+			"selectionBg": "#$HEX__BG1",
+			"selectionFg": "#$HEX__FG1",
+			"normal": {
+				"black": "#$HEX__BLACK",
+				"red": "#$HEX__RED",
+				"green": "#$HEX__GREEN",
+				"yellow": "#$HEX__YELLOW",
+				"blue": "#$HEX__BLUE",
+				"magenta": "#$HEX__MAGENTA",
+				"cyan": "#$HEX__CYAN",
+				"white": "#$HEX__WHITE"
+			},
+			"bright": {
+				"black": "#$HEX__FORE_BLACK",
+				"red": "#$HEX__FORE_RED",
+				"green": "#$HEX__FORE_GREEN",
+				"yellow": "#$HEX__FORE_YELLOW",
+				"blue": "#$HEX__FORE_BLUE",
+				"magenta": "#$HEX__FORE_MAGENTA",
+				"cyan": "#$HEX__FORE_CYAN",
+				"white": "#$HEX__FORE_WHITE"
+			}
+		}
+	}
+}
