@@ -12,7 +12,7 @@
 		"mOnSurface": "#$HEX__FG",
 		"mSurfaceVariant": "#$HEX__BG",
 		"mOnSurfaceVariant": "#$HEX__FG",
-		"mOutline": "#$HEX__FG3",
+		"mOutline": "#$HEX__BG3",
 		"mShadow": "#$HEX__BLACK",
 		"mHover": "#$HEX__BG2",
 		"mOnHover": "#$HEX__FG2",
