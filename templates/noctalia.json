@@ -20,7 +20,7 @@
 			"background": "#$HEX__BG",
 			"foreground": "#$HEX__FG",
 			"cursor": "#$HEX__FG",
-			"cursorText": "#$HEX__BG",
+			"cursorText": "#000000",
 			"selectionBg": "#$HEX__BG1",
 			"selectionFg": "#$HEX__FG1",
 			"normal": {
